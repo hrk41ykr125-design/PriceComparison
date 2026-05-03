@@ -10,8 +10,16 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+let db;
+try {
+  const app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+} catch (error) {
+  console.error("Firebase initialization error:", error);
+  // db remains undefined, components should handle it
+}
+
+export { db };
 
 // History operations
 export const saveComparison = async (data) => {
