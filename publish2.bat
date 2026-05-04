@@ -7,9 +7,6 @@ git add .
 git commit -m "Auto-deploy update"
 IF ERRORLEVEL 1 ( goto :end_script )
 
-# 既存の git add/commit はそのまま残し、pushの前に追加するイメージです
-... (コミット完了後) ...
-
 echo 最新の変更を取得（Pull）しています...
 git pull origin main
 
