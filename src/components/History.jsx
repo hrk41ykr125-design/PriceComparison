@@ -51,16 +51,16 @@ const History = () => {
 
             <div style={{ display: 'flex', gap: 15, alignItems: 'center', background: '#f8fafc', padding: 15, borderRadius: 16 }}>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {item.itemA.name || '商品A'}
+                <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: 2 }}>
+                  商品A
                 </div>
                 <div style={{ fontWeight: 700, fontSize: '1rem' }}>{item.itemA.p}<span style={{fontSize: '0.7rem'}}>円</span></div>
                 <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{item.itemA.c}単位</div>
               </div>
               <div style={{ color: '#cbd5e1', fontWeight: 900, fontSize: '0.8rem' }}>VS</div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {item.itemB.name || '商品B'}
+                <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: 2 }}>
+                  商品B
                 </div>
                 <div style={{ fontWeight: 700, fontSize: '1rem' }}>{item.itemB.p}<span style={{fontSize: '0.7rem'}}>円</span></div>
                 <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{item.itemB.c}単位</div>
@@ -70,7 +70,7 @@ const History = () => {
             <div style={{ marginTop: 15, display: 'flex', alignItems: 'center', gap: 8, color: '#059669', fontSize: '0.9rem', fontWeight: 700 }}>
               <TrendingDown size={18} />
               <span>
-                {item.winner === 'A' ? (item.itemA.name || '商品A') : (item.itemB.name || '商品B')} の方がお得
+                商品{item.winner} の方がお得
               </span>
             </div>
           </div>

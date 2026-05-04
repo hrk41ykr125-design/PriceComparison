@@ -240,65 +240,185 @@ input {
   transform: rotate(45deg);
 }
 
-/* Camera UI */
-.camera-container {
+/* Comparison Layout */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 12px;
+}
+
+.compare-card {
+  background: var(--bg-secondary);
+  padding: 16px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.compare-card.winner {
+  border: 2px solid var(--accent-green);
+  background: linear-gradient(to bottom right, #ffffff, #f0fdf4);
+}
+
+.compare-card.winner::after {
+  content: 'お得';
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: var(--accent-green);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  z-index: 10;
+}
+
+.compare-card h3 {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.input-small-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input-small-group label {
+  font-size: 0.75rem;
+  margin-bottom: 0;
+}
+
+.input-mini-wrapper {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 2px 8px;
+  border: 2px solid transparent;
+}
+
+.input-mini-wrapper:focus-within {
+  border-color: var(--accent-blue);
+  background: white;
+}
+
+.input-mini-wrapper input {
+  padding: 6px;
+  font-size: 1rem;
+}
+
+.mini-unit {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.unit-price-display {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* Modal Styles */
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: black;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
   z-index: 1000;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-video {
+.modal-content {
+  background: white;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 400px;
+  border-radius: 28px;
+  padding: 30px;
+  box-shadow: var(--shadow-lg);
+  animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.camera-overlay {
-  position: absolute;
-  bottom: 40px;
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Success View */
+.success-view {
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.capture-btn {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+  height: 100%;
   background: white;
-  border: 5px solid rgba(255,255,255,0.3);
-  cursor: pointer;
-}
-
-/* History List */
-.history-item {
+  z-index: 2000;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #f1f5f9;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  animation: fadeIn 0.4s ease;
 }
 
-.history-item:last-child {
-  border-bottom: none;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.history-info h4 {
-  font-size: 1rem;
-  margin-bottom: 4px;
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--accent-green);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+  animation: iconBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.history-date {
-  font-size: 0.75rem;
+@keyframes iconBounce {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.success-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.success-text {
   color: var(--text-muted);
+  margin-bottom: 40px;
 }
 
 /* Modal Styles */
