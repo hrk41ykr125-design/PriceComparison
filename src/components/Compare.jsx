@@ -68,6 +68,7 @@ const Compare = () => {
   };
 
   const saveToHistory = async () => {
+    setShowSaveModal(false);
     try {
       await saveComparison({
         title: comparisonTitle || '無題の比較',
@@ -75,7 +76,6 @@ const Compare = () => {
         itemB: { name: '商品B', p: Number(prodB.price), c: Number(prodB.capacity) },
         winner: isACheaper ? 'A' : 'B'
       });
-      setShowSaveModal(false);
       setShowSuccess(true);
     } catch (err) {
       console.error("Save failed:", err);
