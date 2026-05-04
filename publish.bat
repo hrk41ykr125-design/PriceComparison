@@ -15,7 +15,7 @@ git push origin main
 echo.
 echo [2/2] Cloudflare Pages にビルドとデプロイを行っています...
 call npm run build
-npx wrangler pages deploy dist
+npx wrangler pages deploy dist --project-name=pricecomparison --branch=main
 
 echo.
 echo ========================================
