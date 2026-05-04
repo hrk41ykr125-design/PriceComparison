@@ -40,7 +40,12 @@ function App() {
       </div>
 
       <main>
-        {activeTab === 'compare' ? <Compare /> : <History />}
+        <div style={{ display: activeTab === 'compare' ? 'block' : 'none' }}>
+          <Compare />
+        </div>
+        <div style={{ display: activeTab === 'history' ? 'block' : 'none' }}>
+          <History />
+        </div>
       </main>
     </div>
   );
