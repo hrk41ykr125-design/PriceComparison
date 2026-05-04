@@ -77,14 +77,15 @@ const Compare = () => {
       });
       setShowSaveModal(false);
       setShowSuccess(true);
-      setTimeout(() => {
-        setShowSuccess(false);
-        resetAll();
-      }, 2500);
     } catch (err) {
       console.error("Save failed:", err);
       alert('保存に失敗しました。');
     }
+  };
+
+  const handleSuccessClose = () => {
+    setShowSuccess(false);
+    resetAll();
   };
 
   return (
@@ -96,6 +97,9 @@ const Compare = () => {
           </div>
           <h2 className="success-title">保存しました！</h2>
           <p className="success-text">履歴から確認できます。</p>
+          <button className="btn-primary" style={{ maxWidth: '200px' }} onClick={handleSuccessClose}>
+            OK
+          </button>
         </div>
       )}
 
