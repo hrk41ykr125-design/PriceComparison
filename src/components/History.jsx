@@ -29,7 +29,7 @@ const History = () => {
           履歴はありません
         </div>
       ) : (
-        history.map(item => (
+        history.map((item) => (
           <div key={item.id} className="card" style={{ margin: '10px 15px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 15 }}>
               <div>
@@ -41,7 +41,7 @@ const History = () => {
                   {item.timestamp?.toDate ? item.timestamp.toDate().toLocaleString('ja-JP', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '---'}
                 </div>
               </div>
-              <button 
+              <button
                 onClick={() => deleteItem(item.id)}
                 style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', padding: 5 }}
               >
@@ -54,7 +54,7 @@ const History = () => {
                 <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: 2 }}>
                   商品A
                 </div>
-                <div style={{ fontWeight: 700, fontSize: '1rem' }}>{item.itemA.p}<span style={{fontSize: '0.7rem'}}>円</span></div>
+                <div style={{ fontWeight: 700, fontSize: '1rem' }}>{item.itemA.p}<span style={{ fontSize: '0.7rem' }}>円</span></div>
                 <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{item.itemA.c}単位</div>
               </div>
               <div style={{ color: '#cbd5e1', fontWeight: 900, fontSize: '0.8rem' }}>VS</div>
@@ -62,7 +62,7 @@ const History = () => {
                 <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: 2 }}>
                   商品B
                 </div>
-                <div style={{ fontWeight: 700, fontSize: '1rem' }}>{item.itemB.p}<span style={{fontSize: '0.7rem'}}>円</span></div>
+                <div style={{ fontWeight: 700, fontSize: '1rem' }}>{item.itemB.p}<span style={{ fontSize: '0.7rem' }}>円</span></div>
                 <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{item.itemB.c}単位</div>
               </div>
             </div>

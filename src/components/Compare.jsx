@@ -5,14 +5,14 @@ import { saveComparison } from '../firebase';
 const CompactProductCard = ({ title, price, capacity, setPrice, setCapacity, isWinner }) => (
   <div className={`compare-card ${isWinner ? 'winner' : ''}`}>
     <h3>{title}</h3>
-    
+
     <div className="input-small-group">
       <label>値段</label>
       <div className="input-mini-wrapper">
-        <input 
-          type="number" 
-          value={price} 
-          onChange={(e) => setPrice(e.target.value)} 
+        <input
+          type="number"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
           placeholder="0"
           inputMode="numeric"
         />
@@ -23,10 +23,10 @@ const CompactProductCard = ({ title, price, capacity, setPrice, setCapacity, isW
     <div className="input-small-group">
       <label>容量</label>
       <div className="input-mini-wrapper">
-        <input 
-          type="number" 
-          value={capacity} 
-          onChange={(e) => setCapacity(e.target.value)} 
+        <input
+          type="number"
+          value={capacity}
+          onChange={(e) => setCapacity(e.target.value)}
           placeholder="0"
           inputMode="numeric"
         />
@@ -36,10 +36,10 @@ const CompactProductCard = ({ title, price, capacity, setPrice, setCapacity, isW
 
     {price && capacity ? (
       <div className="unit-price-display">
-        {(price / capacity).toFixed(2)} <span style={{fontSize: '0.6rem'}}>円/単</span>
+        {(price / capacity).toFixed(2)} <span style={{ fontSize: '0.6rem' }}>円/単位</span>
       </div>
     ) : (
-      <div className="unit-price-display" style={{opacity: 0}}>-</div>
+      <div className="unit-price-display" style={{ opacity: 0 }}>-</div>
     )}
   </div>
 );
@@ -74,11 +74,11 @@ const Compare = () => {
         title: comparisonTitle || '無題の比較',
         itemA: { name: '商品A', p: Number(prodA.price), c: Number(prodA.capacity) },
         itemB: { name: '商品B', p: Number(prodB.price), c: Number(prodB.capacity) },
-        winner: isACheaper ? 'A' : 'B'
+        winner: isACheaper ? 'A' : 'B',
       });
       setShowSuccess(true);
     } catch (err) {
-      console.error("Save failed:", err);
+      console.error('Save failed:', err);
       alert('保存に失敗しました。');
     }
   };
@@ -104,21 +104,21 @@ const Compare = () => {
       )}
 
       <div className="compare-grid">
-        <CompactProductCard 
-          title="商品 A" 
-          price={prodA.price} 
+        <CompactProductCard
+          title="商品 A"
+          price={prodA.price}
           capacity={prodA.capacity}
-          setPrice={(v) => setProdA({...prodA, price: v})}
-          setCapacity={(v) => setProdA({...prodA, capacity: v})}
+          setPrice={(v) => setProdA({ ...prodA, price: v })}
+          setCapacity={(v) => setProdA({ ...prodA, capacity: v })}
           isWinner={isACheaper}
         />
 
-        <CompactProductCard 
-          title="商品 B" 
-          price={prodB.price} 
+        <CompactProductCard
+          title="商品 B"
+          price={prodB.price}
           capacity={prodB.capacity}
-          setPrice={(v) => setProdB({...prodB, price: v})}
-          setCapacity={(v) => setProdB({...prodB, capacity: v})}
+          setPrice={(v) => setProdB({ ...prodB, price: v })}
+          setCapacity={(v) => setProdB({ ...prodB, capacity: v })}
           isWinner={isBCheaper}
         />
       </div>
@@ -132,9 +132,9 @@ const Compare = () => {
           <RefreshCw size={18} />
           リセット
         </button>
-        <button 
-          className="btn-primary" 
-          style={{ flex: 2 }} 
+        <button
+          className="btn-primary"
+          style={{ flex: 2 }}
           disabled={!prodA.price || !prodB.price || !prodA.capacity || !prodB.capacity}
           onClick={handleSaveClick}
         >
@@ -148,11 +148,11 @@ const Compare = () => {
           <div className="modal-content">
             <h3 className="modal-title">商品名を入力</h3>
             <div className="input-group">
-              <label>比較する商品の名前 (例: 牛乳)</label>
+              <label>比較する商品の名前（例：牛乳）</label>
               <div className="input-wrapper">
-                <input 
-                  type="text" 
-                  placeholder="商品名を入力" 
+                <input
+                  type="text"
+                  placeholder="商品名を入力"
                   value={comparisonTitle}
                   onChange={(e) => setComparisonTitle(e.target.value)}
                   autoFocus

@@ -16,21 +16,21 @@ function App() {
       </header>
 
       <div className="tabs">
-        <div 
-          className="tab-indicator" 
-          style={{ 
+        <div
+          className="tab-indicator"
+          style={{
             transform: `translateX(${activeTab === 'compare' ? '0' : '100'}%)`,
-            width: '50%'
-          }} 
+            width: '50%',
+          }}
         />
-        <button 
+        <button
           className={`tab-btn ${activeTab === 'compare' ? 'active' : ''}`}
           onClick={() => setActiveTab('compare')}
         >
           <Calculator size={18} style={{ marginRight: 8, verticalAlign: 'middle' }} />
           比較
         </button>
-        <button 
+        <button
           className={`tab-btn ${activeTab === 'history' ? 'active' : ''}`}
           onClick={() => setActiveTab('history')}
         >
