@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { RefreshCw, Save, Check } from 'lucide-react';
 import { saveComparison } from '../firebase';
 
@@ -69,6 +69,7 @@ const Compare = () => {
 
   const saveToHistory = async () => {
     setShowSaveModal(false);
+
     try {
       await saveComparison({
         title: comparisonTitle || '無題の比較',

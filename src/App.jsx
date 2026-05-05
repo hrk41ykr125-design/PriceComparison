@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Compare from './components/Compare';
 import History from './components/History';
 import { Calculator, History as HistoryIcon } from 'lucide-react';

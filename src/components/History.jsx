@@ -1,6 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Trash2, TrendingDown, Calendar } from 'lucide-react';
 import { getHistory, deleteHistoryItem } from '../firebase';
+
+const formatDate = (item) => {
+  const date = item.timestamp?.toDate?.() || (item.createdAt ? new Date(item.createdAt) : null);
+  if (!date || Number.isNaN(date.getTime())) {
+    return '---';
+  }
+
+  return date.toLocaleString('ja-JP', {
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+};
 
 const History = () => {
   const [history, setHistory] = useState([]);
@@ -15,6 +29,7 @@ const History = () => {
   const deleteItem = async (id) => {
     if (window.confirm('この履歴を削除しますか？')) {
       await deleteHistoryItem(id);
+      setHistory((currentHistory) => currentHistory.filter((item) => item.id !== id));
     }
   };
 
@@ -38,7 +53,7 @@ const History = () => {
                 </h3>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.75rem', color: '#94a3b8' }}>
                   <Calendar size={12} />
-                  {item.timestamp?.toDate ? item.timestamp.toDate().toLocaleString('ja-JP', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '---'}
+                  {formatDate(item)}
                 </div>
               </div>
               <button
