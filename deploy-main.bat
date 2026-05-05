@@ -43,6 +43,17 @@ if errorlevel 1 (
   goto :fail
 )
 
+if not exist "dist\index.html" (
+  echo [ERROR] dist\index.html was not created.
+  goto :fail
+)
+
+findstr /c:"src/main.jsx" "dist\index.html" > nul 2>&1
+if not errorlevel 1 (
+  echo [ERROR] dist\index.html still points to src/main.jsx. Check the Vite build output.
+  goto :fail
+)
+
 echo.
 echo [2/6] Staging changes...
 git add -A
