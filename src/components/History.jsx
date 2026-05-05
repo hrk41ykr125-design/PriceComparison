@@ -45,7 +45,7 @@ const History = () => {
         </div>
       ) : (
         history.map((item) => (
-          <div key={item.id} className="card" style={{ margin: '10px 15px' }}>
+          <div key={item.clientId || item.remoteId || item.id} className="card" style={{ margin: '10px 15px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 15 }}>
               <div>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1e293b', marginBottom: 4 }}>

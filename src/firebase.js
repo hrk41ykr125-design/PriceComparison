@@ -46,11 +46,23 @@ const sortHistory = (history) => (
   [...history].sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
 );
 
+const getHistorySignature = (item) => JSON.stringify({
+  title: item.title || '',
+  itemA: item.itemA || null,
+  itemB: item.itemB || null,
+  winner: item.winner || '',
+  createdAt: item.createdAt || '',
+});
+
+const getHistoryKey = (item) => (
+  item.clientId || item.remoteId || (item.id?.startsWith('local-') ? getHistorySignature(item) : item.id)
+);
+
 const mergeHistory = (localHistory, remoteHistory) => {
   const itemsByKey = new Map();
 
   [...remoteHistory, ...localHistory].forEach((item) => {
-    const key = item.remoteId || item.id;
+    const key = getHistoryKey(item);
     if (!itemsByKey.has(key)) {
       itemsByKey.set(key, item);
     }
@@ -60,9 +72,11 @@ const mergeHistory = (localHistory, remoteHistory) => {
 };
 
 export const saveComparison = async (data) => {
+  const clientId = `client-${Date.now()}-${Math.random().toString(36).slice(2)}`;
   const localItem = {
     ...data,
     id: `local-${Date.now()}`,
+    clientId,
     createdAt: new Date().toISOString(),
   };
 
@@ -75,6 +89,7 @@ export const saveComparison = async (data) => {
   try {
     const docRef = await addDoc(collection(db, 'history'), {
       ...data,
+      clientId,
       createdAt: localItem.createdAt,
       timestamp: new Date(),
     });
@@ -109,6 +124,7 @@ export const getHistory = (callback) => {
           ...data,
           id: historyDoc.id,
           remoteId: historyDoc.id,
+          clientId: data.clientId,
           createdAt: data.createdAt || data.timestamp?.toDate?.().toISOString?.() || new Date().toISOString(),
         };
       });
